@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import { createUserService } from "../services/createUser.service";
+import { createUserService } from "../services/User/createUser.service";
+import { readProfileService } from "../services/User/readProfile.service";
+import { updateUserService } from "../services/User/updateUser.service";
+import { TUserResponse } from "../interfaces/user.interface";
+import { deleteUserService } from "../services/User/deleteUser.service";
 
 const createUserController = async (req: Request, res: Response) => {
   const newUser = await createUserService(req.body);
@@ -7,15 +11,25 @@ const createUserController = async (req: Request, res: Response) => {
 };
 
 const getUserController = async (req: Request, res: Response) => {
-  return res.json("get funcionando");
+  const userId = res.locals.id;
+  const readUser = await readProfileService(userId);
+  return res.status(200).json(readUser);
 };
 
-const updateUserController = async (req: Request, res: Response) => {
-  return res.json("patch funcionando");
+const updateUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userId = res.locals.id;
+  const data = req.body;
+  const updateUser = await updateUserService(data, userId);
+  return res.status(200).json(updateUser);
 };
 
 const deleteUserController = async (req: Request, res: Response) => {
-  return res.json("delete funcionando");
+  const userId = res.locals.id;
+  const deleteUser = await deleteUserService(userId);
+  return res.status(204).send();
 };
 
 export {

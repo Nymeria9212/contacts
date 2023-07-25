@@ -1,10 +1,10 @@
-import { AppDataSource } from "../data-source";
-import { User } from "../entities/users.entitie";
-import { TUserRequest, TUserResponse } from "../interfaces/user.interface";
+import { AppDataSource } from "../../data-source";
+import { User } from "../../entities/users.entitie";
+import { TUserRequest, TUserResponse } from "../../interfaces/user.interface";
 import { Repository } from "typeorm";
-import { userSchemaResponse } from "../schemas/user.schema";
+import { userSchemaResponse } from "../../schemas/user.schemas";
 import { hash } from "bcryptjs";
-import { AppError } from "../errors/appError";
+import { AppError } from "../../errors/appError";
 
 const createUserService = async (
   data: TUserRequest

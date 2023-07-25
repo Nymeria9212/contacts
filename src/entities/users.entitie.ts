@@ -31,7 +31,7 @@ class User {
   @CreateDateColumn()
   date: Date;
 
-  @OneToMany(() => Contact, (contacts) => contacts.user)
+  @OneToMany(() => Contact, (contacts) => contacts.user, { cascade: true })
   contacts: Contact[];
 
   @BeforeInsert()

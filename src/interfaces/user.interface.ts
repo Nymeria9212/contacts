@@ -4,7 +4,7 @@ import {
   userSchema,
   userSchemaResponse,
   patchUserSchema,
-} from "../schemas/user.schema";
+} from "../schemas/user.schemas";
 
 type TUser = z.infer<typeof userSchema>;
 type TUserRequest = z.infer<typeof userSchemaRequest>;
