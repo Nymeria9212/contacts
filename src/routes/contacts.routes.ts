@@ -11,21 +11,24 @@ import {
   contactSchemaPartial,
   contactSchemaRequest,
 } from "../schemas/contact.schemas";
+import { verifyTokenMiddleware } from "../middlewares/verifyToken.middleware";
 
 const contactsRoutes = Router();
 
 contactsRoutes.post(
   "",
   validatedDataMiddleware(contactSchemaRequest),
+  verifyTokenMiddleware,
   createContactController
 );
-contactsRoutes.get("", listContactController);
-contactsRoutes.get("/:id", readContactController);
+contactsRoutes.get("", verifyTokenMiddleware, listContactController);
+contactsRoutes.get("/:id", verifyTokenMiddleware, readContactController);
 contactsRoutes.patch(
   "/:id",
   validatedDataMiddleware(contactSchemaPartial),
+  verifyTokenMiddleware,
   updateContactController
 );
-contactsRoutes.delete("/:id", deleteContactController);
+contactsRoutes.delete("/:id", verifyTokenMiddleware, deleteContactController);
 
 export { contactsRoutes };

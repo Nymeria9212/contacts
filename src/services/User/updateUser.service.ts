@@ -11,7 +11,7 @@ const updateUserService = async (
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const findUser: User | null = await userRepository.findOneBy({ id: userId });
 
-  const update = await userRepository.create({
+  const update = userRepository.create({
     ...findUser,
     ...data,
   });

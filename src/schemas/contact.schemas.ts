@@ -8,6 +8,12 @@ const contactSchema = z.object({
 });
 
 const contactSchemaRequest = contactSchema.omit({ id: true, date: true });
-const contactSchemaPartial = contactSchema.partial();
+const contactSchemaPartial = contactSchema.omit({ id: true }).partial();
+const contactsSchemaResponse = z.array(contactSchema);
 
-export { contactSchema, contactSchemaRequest, contactSchemaPartial };
+export {
+  contactSchema,
+  contactSchemaRequest,
+  contactSchemaPartial,
+  contactsSchemaResponse,
+};

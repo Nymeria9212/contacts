@@ -9,13 +9,13 @@ const verifyTokenMiddleware = async (
 ): Promise<Response | void> => {
   let authorization: string | undefined = req.headers.authorization;
   if (!authorization) {
-    throw new AppError("Missing bearer token", 401);
+    return res.status(401).json({ message: "Missing bearer token" });
   }
   const token = authorization.split(" ")[1];
 
   verify(token, String(process.env.SECRET_KEY!), (error: any, decoded: any) => {
     if (error) {
-      throw new AppError(error.message, 401);
+      return res.status(401).json({ message: "Missing bearer token" });
     }
     res.locals.id = decoded.sub;
   });
