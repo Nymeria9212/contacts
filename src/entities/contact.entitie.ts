@@ -18,6 +18,9 @@ class Contact {
   @Column({ length: 15 })
   telephone: string;
 
+  @Column({ length: 50 })
+  email: string;
+
   @CreateDateColumn()
   date: Date;
 
