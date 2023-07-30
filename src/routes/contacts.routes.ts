@@ -25,7 +25,7 @@ contactsRoutes.post(
 contactsRoutes.get(
   "",
   verifyTokenMiddleware,
-  ensureIsOwnerContactMiddleware,
+
   listContactController
 );
 contactsRoutes.get(
